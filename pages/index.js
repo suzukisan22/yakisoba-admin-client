@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useEffect, useState} from 'react'
 import axios from 'axios'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 export default function Home() {
   const [users, setUsers] = useState([])
