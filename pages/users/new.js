@@ -13,7 +13,7 @@ export default function New() {
 
   const submitCreateUser = () => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
-    axios.post('http://localhost:3000/v1/admin/users', {
+    axios.post(`${process.env.API_SERVER_ENDPOINT}v1/admin/users`, {
       username,
       password,
       last_name: lastName,
@@ -23,7 +23,7 @@ export default function New() {
         Authorization: authToken
       }
     }).then((response) => {
-      router.push(`http://localhost:8080/users/${response.data.id}`)
+      router.push(`${process.env.FRONTEND_ENDPOINT}users/${response.data.id}`)
     }).catch((response) => {
     })
   }

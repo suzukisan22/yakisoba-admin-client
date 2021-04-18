@@ -21,7 +21,7 @@ export default function Id() {
     if (id != 0) {
       const authToken = localStorage.getItem('r_to_a_admin_key')
       const f = async () => {
-        await axios.get(`http://localhost:3000/v1/admin/users/${id}`,
+        await axios.get(`${process.env.API_SERVER_ENDPOINT}v1/admin/users/${id}`,
         {
           headers: {
             Authorization: authToken
@@ -29,7 +29,7 @@ export default function Id() {
         }).then((response) => {
           setUser(response.data)
         }).catch(() => {
-          router.push('http://localhost:8080/login')
+          router.push(`${process.env.FRONTEND_ENDPOINT}login`)
         })
       }
       f()

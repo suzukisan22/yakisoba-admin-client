@@ -11,12 +11,12 @@ export default function Login() {
   const router = useRouter();
 
   const submitLogin = () => {
-     axios.post('http://localhost:3000/v1/admin/login', {
+     axios.post(`${process.env.API_SERVER_ENDPOINT}v1/admin/login`, {
       username,
       password
     }).then(async (response) => {
       await localStorage.setItem("r_to_a_admin_key", response.data.auth_token)
-      router.push('http://localhost:8080/')
+      router.push(process.env.FRONTEND_ENDPOINT)
     }).catch((response) => {
     })
   }
