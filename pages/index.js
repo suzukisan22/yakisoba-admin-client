@@ -17,7 +17,6 @@ export default function Home() {
 
   useEffect(() => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
-    console.log(process.env.API_SERVER_ENDPOINT)
     const f = async () => {
       await axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users`, {
         headers: {
@@ -26,8 +25,7 @@ export default function Home() {
       }).then((response) => {
         setUsers(response.data)
       }).catch(() => {
-        console.log(process.env.FRONTEND_ENDPOINT)
-        router.push(`${process.env.FRONTEND_ENDPOINT}/login`)
+        router.push('/login')
       })
     }
     f()

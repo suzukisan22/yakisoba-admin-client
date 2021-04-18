@@ -29,7 +29,7 @@ export default function Id() {
         }).then((response) => {
           setUser(response.data)
         }).catch(() => {
-          router.push(`${process.env.FRONTEND_ENDPOINT}/login`)
+          router.push('/login')
         })
       }
       f()

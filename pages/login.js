@@ -16,7 +16,7 @@ export default function Login() {
       password
     }).then(async (response) => {
       await localStorage.setItem("r_to_a_admin_key", response.data.auth_token)
-      router.push(process.env.FRONTEND_ENDPOINT)
+      router.push('/')
     }).catch((response) => {
     })
   }

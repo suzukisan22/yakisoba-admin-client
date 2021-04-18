@@ -23,7 +23,7 @@ export default function New() {
         Authorization: authToken
       }
     }).then((response) => {
-      router.push(`${process.env.FRONTEND_ENDPOINT}/users/${response.data.id}`)
+      router.push(`/users/${response.data.id}`)
     }).catch((response) => {
     })
   }
