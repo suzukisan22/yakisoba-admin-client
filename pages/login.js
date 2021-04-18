@@ -11,7 +11,7 @@ export default function Login() {
   const router = useRouter();
 
   const submitLogin = () => {
-     axios.post(`${process.env.API_SERVER_ENDPOINT}v1/admin/login`, {
+     axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/login`, {
       username,
       password
     }).then(async (response) => {

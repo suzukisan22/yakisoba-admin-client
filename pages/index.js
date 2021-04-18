@@ -19,7 +19,7 @@ export default function Home() {
     const authToken = localStorage.getItem('r_to_a_admin_key')
     console.log(process.env.API_SERVER_ENDPOINT)
     const f = async () => {
-      await axios.get(`${process.env.API_SERVER_ENDPOINT}v1/admin/users`, {
+      await axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users`, {
         headers: {
           Authorization: authToken
         }
@@ -27,7 +27,7 @@ export default function Home() {
         setUsers(response.data)
       }).catch(() => {
         console.log(process.env.FRONTEND_ENDPOINT)
-        router.push(`${process.env.FRONTEND_ENDPOINT}login`)
+        router.push(`${process.env.FRONTEND_ENDPOINT}/login`)
       })
     }
     f()
