@@ -1,5 +1,5 @@
 import styles from '../../styles/Home.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from "next/router";
 import axios from 'axios';
 import { Button, TextField } from '@material-ui/core';
@@ -10,6 +10,20 @@ export default function New() {
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const router = useRouter();
+
+  useEffect(() => {
+    const authToken = localStorage.getItem('r_to_a_admin_key')
+    const f = async () => {
+      await axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users`, {
+        headers: {
+          Authorization: authToken
+        }
+      }).catch(() => {
+        router.push('/login')
+      })
+    }
+    f()
+  }, [])
 
   const submitCreateUser = () => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
