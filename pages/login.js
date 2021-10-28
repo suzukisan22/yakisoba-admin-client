@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 import { Button, TextField } from '@material-ui/core';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -22,27 +22,31 @@ export default function Login() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.loginContainer}>
       <h1>ログイン</h1>
-      <TextField 
-        label="username"
-        name="username"
-        value={username}
-        onChange={ (e) => { 
-          setUsername(e.target.value)
-        }}
-      />
-      <TextField
-        label="password"
-        name="password"
-        type="password"
-        onChange={
-          (e) => { setPassword(e.target.value) }
-        }
-      />
-      <Button variant="contained" color="primary" onClick={submitLogin} >
-        ログイン
-      </Button>
+      <div class={styles.formWrapper}>
+        <TextField 
+          label="username"
+          name="username"
+          value={username}
+          onChange={ (e) => { 
+            setUsername(e.target.value)
+          }}
+        />
+        <TextField
+          label="password"
+          name="password"
+          type="password"
+          onChange={
+            (e) => { setPassword(e.target.value) }
+          }
+        />
+      </div>
+      <div className={styles.loginButtonGroup}>
+        <Button variant="contained" color="primary" onClick={submitLogin} >
+          ログイン
+        </Button>
+      </div>
     </div>
   )
 }
