@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>R To A管理画面</title>
         <meta name="robots" content="noindex" />
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&amp;subset=japanese" rel="stylesheet" />
       </Head>
       <div className='container'>
         <Component {...pageProps} />
