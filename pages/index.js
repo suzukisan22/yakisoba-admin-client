@@ -78,6 +78,13 @@ export default function Home() {
                         </a>
                       </Link>
                     </td>
+                    <td>
+                      <Link href={`/users/${user.id}`} key={index}>
+                        <a style={{display: 'block', width: '100%'}}>
+                          {!!user.transfer_fee_manager ? (user.transfer_fee_manager.cost == 0 ? "提供の必要なし" : (user.transfer_fee_manager.is_guest_accepted ? "受領済み" : "未受領")) : "未回答"}
+                        </a>
+                      </Link>
+                    </td>
                   </tr>
             ))}
           </tbody>
