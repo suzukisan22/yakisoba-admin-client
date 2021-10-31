@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 
 export default function Home() {
   const [users, setUsers] = useState([])
+  const [isGroomTabSelected, setIsGroomTabSelected] = useState(true)
   const router = useRouter();
 
   useEffect(() => {
@@ -32,15 +33,21 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>R To A管理画面</title>
-      </Head>
+    <div>
+      <header className={styles.header}>
+        <span>鈴木家・大河内家結婚式 管理画面</span>
+      </header>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          管理画面 HOME
-        </h1>
+        <h1 className={styles.title}>出席者一覧</h1>
+        <div className={styles.listFilterTab}>
+          <div className={isGroomTabSelected ? styles.groomTabSelected : styles.groomTab} onClick={() => !isGroomTabSelected && setIsGroomTabSelected(!isGroomTabSelected)}>
+            <span className={isGroomTabSelected ? styles.tabSelectedText : styles.tabText}>新郎側</span>
+          </div>
+          <div className={isGroomTabSelected ? styles.brideTab : styles.brideTabSelected} onClick={() => isGroomTabSelected && setIsGroomTabSelected(!isGroomTabSelected)}>
+            <span className={isGroomTabSelected ? styles.tabText : styles.tabSelectedText}>新婦側</span>
+          </div>
+        </div>
         <TableContainer component={Paper}>
           <Table aria-label="simple table">
             <TableHead>

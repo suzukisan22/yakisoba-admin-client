@@ -1,10 +1,68 @@
-.main {
-  padding: 5rem 0;
-  flex: 1;
+header.header {
+  background-color: #BBD2BB;
+  height: 64px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  span {
+    color: #665723;
+    margin-left: 36px;
+    font-size: 24px;
+  }
+}
+
+.main {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.listFilterTab {
+  display: flex;
+  border-bottom: 1px solid #789277;
+  margin-bottom: 36px;
+}
+
+.groomTab {
+  width: 128px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.groomTabSelected {
+  width: 128px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333572;
+}
+
+.tabText {
+  color: #B8BEB8;
+}
+
+.tabSelectedText {
+  color: #DAE5DA;
+}
+
+.brideTab {
+  width: 128px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.brideTabSelected {
+  width: 128px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7E3535;
 }
 
 .footer {
@@ -26,11 +84,6 @@
   align-items: center;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
 .title a:hover,
 .title a:focus,
 .title a:active {
@@ -38,17 +91,14 @@
 }
 
 .title {
-  margin: 0;
+  margin: 48px auto;
   line-height: 1.15;
-  font-size: 4rem;
+  font-size: 24px;
+  text-decoration: none;
 }
 
-.title,
 .description {
   text-align: center;
-}
-
-.description {
   line-height: 1.5;
   font-size: 1.5rem;
 }
