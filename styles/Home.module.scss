@@ -112,9 +112,10 @@ header.header {
     border-bottom: 1px solid #999999;
     font-size: 14px;
   }
-  tbody > tr > td.borderBottomRequired {
-    border-bottom: 1px solid #789277;
-  }
+}
+
+.borderBottomRequired {
+  border-bottom: 1px solid #789277;
 }
 
 .code {
