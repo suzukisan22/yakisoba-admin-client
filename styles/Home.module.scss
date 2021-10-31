@@ -103,6 +103,20 @@ header.header {
   font-size: 1.5rem;
 }
 
+.attendanceListTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  thead > tr > th {
+    color: #B8BEB8;
+    border-bottom: 1px solid #999999;
+    font-size: 14px;
+  }
+  tbody > tr > td.borderBottomRequired {
+    border-bottom: 1px solid #789277;
+  }
+}
+
 .code {
   background: #fafafa;
   border-radius: 5px;
