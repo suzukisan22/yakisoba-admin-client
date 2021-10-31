@@ -52,7 +52,7 @@ export default function Home() {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user.id} className={users.length == index && styles.borderBottomRequired}>
+              <tr key={user.id} className={users.length != index + 1 && styles.borderBottomRequired}>
                 <td>
                   <span style={{display: 'block', fontSize: '12px', textAlign: "center"}}>{user.last_name_kana}&nbsp;{user.first_name_kana}</span>
                   {user.last_name}&nbsp;{user.first_name}
