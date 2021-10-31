@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.scss'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 export default function Home() {
   const [users, setUsers] = useState([])
@@ -52,18 +53,32 @@ export default function Home() {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user.id} className={users.length != index + 1 && styles.borderBottomRequired}>
-                <td>
-                  <span style={{display: 'block', fontSize: '12px', textAlign: "center"}}>{user.last_name_kana}&nbsp;{user.first_name_kana}</span>
-                  {user.last_name}&nbsp;{user.first_name}
-                </td>
-                <td>
-                  {!!user.attendance ? (user.attendance.will_attende ? "出席予定" : "欠席予定") : "未回答"}
-                </td>
-                <td>
-                  {!!user.attendance ? (user.attendance.is_attende_on_that_day ? "受付済み" : "受付が未完了") : "未回答"}
-                </td>
-              </tr>
+              
+                
+                  <tr key={user.id} className={users.length != index + 1 && styles.borderBottomRequired}>
+                    <td>
+                      <Link href={`/users/${user.id}`} key={index}>
+                        <a style={{display: 'block', width: '100%'}}>
+                          <span style={{display: 'block', fontSize: '12px', textAlign: "center"}}>{user.last_name_kana}&nbsp;{user.first_name_kana}</span>
+                          {user.last_name}&nbsp;{user.first_name}
+                        </a>
+                      </Link>
+                    </td>
+                    <td>
+                      <Link href={`/users/${user.id}`} key={index}>
+                        <a style={{display: 'block', width: '100%'}}>
+                          {!!user.attendance ? (user.attendance.will_attende ? "出席予定" : "欠席予定") : "未回答"}
+                        </a>
+                      </Link>
+                    </td>
+                    <td>
+                      <Link href={`/users/${user.id}`} key={index}>
+                        <a style={{display: 'block', width: '100%'}}>
+                          {!!user.attendance ? (user.attendance.is_attende_on_that_day ? "受付済み" : "受付が未完了") : "未回答"}
+                        </a>
+                      </Link>
+                    </td>
+                  </tr>
             ))}
           </tbody>
         </table>
