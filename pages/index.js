@@ -37,6 +37,31 @@ export default function Home() {
     setAnchorEl(null);
   };
 
+  const onClickAttendance = (user) => {
+    const authToken = localStorage.getItem('r_to_a_admin_key')
+    axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users/attendances/update`, {
+      user: {
+        id: user.id,
+        attendance: {
+          is_attende_on_that_day: !user.attendance.is_attende_on_that_day
+        },
+        transfer_fee_manager: {
+          is_guest_accepted: user.transfer_fee_manager.is_guest_accepted
+        },
+      }
+    },
+      {
+      headers: {
+        Authorization: authToken
+      }
+    }).then((response) => {
+      setUsers(response.data)
+      setAnchorEl(null);
+    }).catch(() => {
+      router.push('/login')
+    })
+  }
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -111,8 +136,14 @@ export default function Home() {
                     }}
                   >
                     <ul className={styles.popoverList}>
-                      <li>受付完了にする</li>
-                      <li>お車代を提供済みにする</li>
+                      {!!user.attendance && (user.attendance.is_attende_on_that_day ? 
+                      <li onClick={() => onClickAttendance(user)}>受付が未完了に戻す</li> : 
+                      <li onClick={() => onClickAttendance(user)}>受付済みにする</li>)}
+                      {user.transfer_fee_manager.cost != 0 && (
+                        user.transfer_fee_manager.is_guest_accepted ?
+                        <li>お車代を未提供に戻す</li> :
+                        <li>お車代を提供済みにする</li>
+                      )}
                     </ul>
                   </Popover>
                 </td>
