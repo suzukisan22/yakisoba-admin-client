@@ -24,7 +24,7 @@ export default function Login() {
   return (
     <div className={styles.loginContainer}>
       <h1>ログイン</h1>
-      <div class={styles.formWrapper}>
+      <div className={styles.formWrapper}>
         <TextField 
           label="username"
           name="username"
