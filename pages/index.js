@@ -62,6 +62,31 @@ export default function Home() {
     })
   }
 
+  const onClickFeeAccepted = (user) => {
+    const authToken = localStorage.getItem('r_to_a_admin_key')
+    axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users/attendances/update`, {
+      user: {
+        id: user.id,
+        attendance: {
+          is_attende_on_that_day: user.attendance.is_attende_on_that_day
+        },
+        transfer_fee_manager: {
+          is_guest_accepted: !user.transfer_fee_manager.is_guest_accepted
+        },
+      }
+    },
+      {
+      headers: {
+        Authorization: authToken
+      }
+    }).then((response) => {
+      setUsers(response.data)
+      setAnchorEl(null);
+    }).catch(() => {
+      router.push('/login')
+    })
+  }
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -119,7 +144,7 @@ export default function Home() {
                 <td>
                   <Link href={`/users/${user.id}`} key={index}>
                     <a style={{display: 'block', width: '100%'}}>
-                      {!!user.transfer_fee_manager ? (user.transfer_fee_manager.cost == 0 ? "提供の必要なし" : (user.transfer_fee_manager.is_guest_accepted ? "受領済み" : "未受領")) : "未回答"}
+                      {!!user.transfer_fee_manager ? (user.transfer_fee_manager.cost == 0 ? "提供の必要なし" : (user.transfer_fee_manager.is_guest_accepted ? "提供済み" : "未提供")) : "未回答"}
                     </a>
                   </Link>
                 </td>
@@ -141,8 +166,8 @@ export default function Home() {
                       <li onClick={() => onClickAttendance(user)}>受付済みにする</li>)}
                       {user.transfer_fee_manager.cost != 0 && (
                         user.transfer_fee_manager.is_guest_accepted ?
-                        <li>お車代を未提供に戻す</li> :
-                        <li>お車代を提供済みにする</li>
+                        <li onClick={() => onClickFeeAccepted(user)}>お車代を未提供に戻す</li> :
+                        <li onClick={() => onClickFeeAccepted(user)}>お車代を提供済みにする</li>
                       )}
                     </ul>
                   </Popover>
