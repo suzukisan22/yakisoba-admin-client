@@ -89,8 +89,6 @@ export default function Home() {
 
   const setUserByInvitationSide = ({isGroomSide}) => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
-    console.log(authToken)
-    console.log(isGroomSide)
 
     axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users?is_groom_side=${isGroomSide}`, {
       headers: {
