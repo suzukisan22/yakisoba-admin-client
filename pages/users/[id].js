@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/router";
 import axios from 'axios';
+import styles from '../../styles/UserDetail.module.scss'
 // import queryString from 'query-string';
 
 export default function Id() {
@@ -37,6 +38,55 @@ export default function Id() {
   }, [id]);
 
   return (
-    <h1>ユーザー{router.query.id}のページです</h1>
+    <div>
+      <header className={styles.header}>
+        <span>鈴木家・大河内家結婚式 管理画面</span>
+      </header>
+      <main className={styles.main}>
+        <div className={styles.mainHeader}>
+          <div className={styles.groomSideIcon}>
+            <span className={styles.sideIconText}>新郎友人</span>
+          </div>
+          <div className={styles.nameGroup}>
+            <span className={styles.nameFurigana}>{user.last_name_kana}&nbsp;{user.first_name_kana}</span>
+            <h3 style={{display: 'block', fontSize: '24px', textAlign: "center", margin: '0px'}}>{user.last_name}&nbsp;{user.first_name}</h3>
+          </div>
+        </div>
+        <div className={styles.panelGroup}>
+          <div className={styles.panelHeader}>
+            出欠関係情報
+          </div>
+          <div className={styles.panelBody}>
+            <div className={styles.informationRow}>
+              <div className={styles.informationGroup}>
+                <p className={styles.informationLabel}>出欠状態</p>
+                <p className={styles.informationContext}>
+                  {!!user.attendance ? (user.attendance.is_attende_on_that_day ? "受付済み" : "受付が未完了") : "未回答"}
+                </p>
+              </div>
+              <div className={styles.informationGroup} style={{borderLeft: '2px solid #ebebeb', paddingLeft: '16px'}}>
+                <p className={styles.informationLabel}>お車代を提供有無</p>
+                <p className={styles.informationContext}>
+                  {!!user.transfer_fee_manager ? (user.transfer_fee_manager.cost == 0 ? "提供の必要なし" : (user.transfer_fee_manager.is_guest_accepted ? "提供済み" : "未提供")) : "未回答"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.panelGroup}>
+          <div className={styles.panelHeader}>
+            コメント
+          </div>
+          <div className={styles.panelBody}>
+            <div className={styles.textInputArea}>
+              <textarea className={styles.textareaComment} rows={5} />
+              <button className={styles.submitButton}>
+                保存する
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }

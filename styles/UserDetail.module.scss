@@ -1,0 +1,124 @@
+header.header {
+  background-color: #BBD2BB;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  span {
+    color: #665723;
+    margin-left: 36px;
+    font-size: 24px;
+  }
+}
+
+.main {
+  width: 640px;
+  margin: 0 auto;
+}
+
+.mainHeader {
+  display: flex;
+  margin: 36px auto;
+}
+
+.groomSideIcon {
+  width: 128px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333572;
+}
+
+.brideSideIcon {
+  width: 128px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7E3535;
+}
+
+.sideIconText {
+  color: #DAE5DA;
+  letter-spacing: 4px;
+}
+
+.panelGroup {
+  background-color: #ffffff;
+  border-radius: 4px;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+}
+
+.panelHeader {
+  background-color: #EBEBEB;
+  color: #7B907B;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  padding: 16px;
+  font-size: 18px;
+}
+
+.textInputArea {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+
+.textareaComment {
+  border: 1px solid #B8BEB8;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 20px;
+  letter-spacing: 4px;
+}
+
+.submitButton {
+  background-color: #665723;
+  width: 152px;
+  height: 48px;
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: #F4FBF3;
+}
+
+.panelBody {
+  padding: 16px;
+}
+
+.informationRow {
+  display: flex;
+}
+
+.informationGroup {
+  margin-right: 16px;
+}
+
+.informationLabel {
+  color: #B8BEB8;
+  margin-bottom: 8px;
+}
+
+.nameGroup {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  margin-left: 16px;
+  height: 64px;
+}
+
+.nameFurigana {
+  display: block;
+  font-size: 12px;
+  text-align: center;
+}
+
+.nameKanji {
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  margin: '0px;'
+}
