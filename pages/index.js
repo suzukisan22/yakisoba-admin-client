@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
     const f = async () => {
-      await axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users`, {
+      await axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users?is_groom_side=true`, {
         headers: {
           Authorization: authToken
         }
@@ -87,6 +87,22 @@ export default function Home() {
     })
   }
 
+  const setUserByInvitationSide = ({isGroomSide}) => {
+    const authToken = localStorage.getItem('r_to_a_admin_key')
+    console.log(authToken)
+    console.log(isGroomSide)
+
+    axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users?is_groom_side=${isGroomSide}`, {
+      headers: {
+        Authorization: authToken
+      }
+    }).then((response) => {
+      setIsGroomTabSelected(isGroomSide)
+      setUsers(response.data)
+    }).catch((e) => {
+    })
+  }
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -99,10 +115,10 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>出席者一覧</h1>
         <div className={styles.listFilterTab}>
-          <div className={isGroomTabSelected ? styles.groomTabSelected : styles.groomTab} onClick={() => !isGroomTabSelected && setIsGroomTabSelected(!isGroomTabSelected)}>
+          <div className={isGroomTabSelected ? styles.groomTabSelected : styles.groomTab} onClick={() => setUserByInvitationSide({isGroomSide: true})}>
             <span className={isGroomTabSelected ? styles.tabSelectedText : styles.tabText}>新郎側</span>
           </div>
-          <div className={isGroomTabSelected ? styles.brideTab : styles.brideTabSelected} onClick={() => isGroomTabSelected && setIsGroomTabSelected(!isGroomTabSelected)}>
+          <div className={isGroomTabSelected ? styles.brideTab : styles.brideTabSelected} onClick={() => setUserByInvitationSide({isGroomSide: false})}>
             <span className={isGroomTabSelected ? styles.tabText : styles.tabSelectedText}>新婦側</span>
           </div>
         </div>
