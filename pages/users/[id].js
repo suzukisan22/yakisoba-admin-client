@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/router";
 import axios from 'axios';
-import styles from '../../styles/UserDetail.module.scss'
+import styles from '../../styles/UserDetail.module.scss';
 // import queryString from 'query-string';
 
 export default function Id() {
@@ -69,6 +69,48 @@ export default function Id() {
                 <p className={styles.informationContext}>
                   {!!user.transfer_fee_manager ? (user.transfer_fee_manager.cost == 0 ? "提供の必要なし" : (user.transfer_fee_manager.is_guest_accepted ? "提供済み" : "未提供")) : "未回答"}
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.panelGroup}>
+          <div className={styles.panelHeader}>
+            アカウント情報
+          </div>
+          <div className={styles.panelBody}>
+            <div className={styles.accountRow}>
+              <div className={styles.accountGroup}>
+                <p className={styles.informationLabel}>Username</p>
+                <p className={styles.informationContext}>
+                  {user.username}
+                </p>
+              </div>
+            </div>
+            <div className={styles.informationRow}>
+              <div className={styles.accountGroup}>
+                <div className={styles.accountLabelGroup}>
+                  <p className={styles.accountLabel}>Password</p>
+                  <span className={styles.accountDescription}>パスワードを紛失した場合、こちらから新しいパスワードに変更してください</span>
+                </div>
+                <div className={styles.passwordChangeForm}>
+                  <div>
+                    <label className={styles.passwordChangeLabel}>
+                      <span>新しいパスワード</span>
+                      <input type="password" name="password" className={styles.inputPassword}/>
+                    </label>
+                  </div>
+                  <div>
+                    <label className={styles.passwordChangeLabel}>
+                      <span>新しいパスワード(確認)</span>
+                      <input type="password" name="confirm_password" className={styles.inputPassword}/>
+                    </label>
+                  </div>
+                  <div className={styles.submitButtonGroup}>
+                    <button className={styles.submitButton}>
+                      変更する
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
