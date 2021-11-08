@@ -20,6 +20,14 @@ header.header {
   margin: 36px auto;
 }
 
+.arrowBackIcon {
+  width: 48px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .groomSideIcon {
   width: 128px;
   height: 64px;
@@ -162,7 +170,7 @@ header.header {
   border-radius: 4px;
   margin-bottom: 16px;
   min-width: 280px;
-  height: 32px;
+  height: 40px;
   font-size: 18px;
   letter-spacing: 4px;
 }

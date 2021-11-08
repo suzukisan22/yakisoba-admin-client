@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import axios from 'axios';
 import styles from '../../styles/UserDetail.module.scss';
 // import queryString from 'query-string';
+import {ArrowBackIos} from '@material-ui/icons';
 
 export default function Id() {
   const router = useRouter();
@@ -44,6 +45,9 @@ export default function Id() {
       </header>
       <main className={styles.main}>
         <div className={styles.mainHeader}>
+          <div className={styles.arrowBackIcon}>
+            <ArrowBackIos />
+          </div>
           <div className={styles.groomSideIcon}>
             <span className={styles.sideIconText}>新郎友人</span>
           </div>
