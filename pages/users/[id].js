@@ -45,7 +45,7 @@ export default function Id() {
       </header>
       <main className={styles.main}>
         <div className={styles.mainHeader}>
-          <div className={styles.arrowBackIcon}>
+          <div className={styles.arrowBackIcon} onClick={() => router.back()}>
             <ArrowBackIos />
           </div>
           <div className={styles.groomSideIcon}>
