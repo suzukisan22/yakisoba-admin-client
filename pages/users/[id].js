@@ -49,7 +49,7 @@ export default function Id() {
           </div>
           <div className={styles.nameGroup}>
             <span className={styles.nameFurigana}>{user.last_name_kana}&nbsp;{user.first_name_kana}</span>
-            <h3 style={{display: 'block', fontSize: '24px', textAlign: "center", margin: '0px'}}>{user.last_name}&nbsp;{user.first_name}</h3>
+            <h3 className={styles.nameKanji}>{user.last_name}&nbsp;{user.first_name}</h3>
           </div>
         </div>
         <div className={styles.panelGroup}>
