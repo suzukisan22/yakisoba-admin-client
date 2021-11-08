@@ -9,6 +9,7 @@ export default function Id() {
   const router = useRouter();
   const [id, setId] = useState(0);
   const [user, setUser] = useState('');
+  const isGroomSide = user.account_detail && user.account_detail.is_groom_side;
 
   // この部分を追加
   useEffect(() => {
@@ -48,8 +49,8 @@ export default function Id() {
           <div className={styles.arrowBackIcon} onClick={() => router.back()}>
             <ArrowBackIos />
           </div>
-          <div className={styles.groomSideIcon}>
-            <span className={styles.sideIconText}>新郎友人</span>
+          <div className={isGroomSide ? styles.groomSideIcon : styles.brideSideIcon}>
+            <span className={styles.sideIconText}>{user?.account_detail?.relation_name}</span>
           </div>
           <div className={styles.nameGroup}>
             <span className={styles.nameFurigana}>{user.last_name_kana}&nbsp;{user.first_name_kana}</span>
