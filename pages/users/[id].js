@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from "next/router";
 import axios from 'axios';
 import styles from '../../styles/UserDetail.module.scss';
@@ -15,7 +15,10 @@ export default function Id() {
   const [comment, setComment] = useState('');
 
   const isGroomSide = user.account_detail && user.account_detail.is_groom_side;
-  const {handleSubmit, register, formState: { errors }} = useForm();
+  const {handleSubmit, register, formState: { errors }, watch} = useForm();
+
+  const password = useRef({});
+  password.current = watch("password", "");
 
   // この部分を追加
   useEffect(() => {
@@ -25,7 +28,7 @@ export default function Id() {
     }
   }, [router]);
 
-  console.log(comment)
+  console.log(errors)
 
   // idが取得されてセットされたら処理される
   useEffect(() => {
@@ -167,8 +170,14 @@ export default function Id() {
                     <label className={styles.passwordChangeLabel}>
                       <span>新しいパスワード(確認)</span>
                       <div style={{display: 'flex', flexFlow: 'column'}}>
-                        <input type="password" className={styles.inputPassword} {...register("confirmed_password", {required: "パスワード(確認)は必須入力です"})} />
-                        {errors && errors.password && <p style={{fontSize: '12px', color: 'red'}}>{errors.confirmed_password.message}</p>}
+                        <input 
+                          type="password"
+                          className={styles.inputPassword}
+                          {...register("confirmed_password", 
+                            {required: "パスワード(確認)は必須入力です",
+                            validate: value => value === password.current || "パスワードが合っていません"
+                            })} />
+                        {errors && errors.confirmed_password && <p style={{fontSize: '12px', color: 'red'}}>{errors.confirmed_password.message}</p>}
                       </div>
                     </label>
                   </div>
