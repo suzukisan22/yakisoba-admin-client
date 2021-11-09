@@ -11,6 +11,8 @@ export default function Id() {
   const [id, setId] = useState(0);
   const [user, setUser] = useState('');
   const [passwordFormMessage, setPasswordFormMessage] = useState('');
+  const [commentFormMessage, setCommentFormMessage] = useState('');
+  const [comment, setComment] = useState('');
 
   const isGroomSide = user.account_detail && user.account_detail.is_groom_side;
   const {handleSubmit, register, formState: { errors }} = useForm();
@@ -22,6 +24,8 @@ export default function Id() {
       setId(Number(router.query.id));
     }
   }, [router]);
+
+  console.log(comment)
 
   // idが取得されてセットされたら処理される
   useEffect(() => {
@@ -44,7 +48,6 @@ export default function Id() {
   }, [id]);
 
   const onClickUpdatePassword = (data) => {
-    console.log(data)
     const authToken = localStorage.getItem('r_to_a_admin_key')
     axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users/attendances/password_update`, {
       user: {
@@ -57,14 +60,35 @@ export default function Id() {
         Authorization: authToken
       }
     }).then((response) => {
-      setPasswordFormMessage("更新に成功しました")
+      setPasswordFormMessage("パスワードの更新に成功しました")
     }).catch((e) => {
       console.log(e)
       router.push('/login')
     })
   }
 
-  console.log(errors)
+  const submitComment = () => {
+    const authToken = localStorage.getItem('r_to_a_admin_key')
+    axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users/attendances/comment_update`, {
+      user: {
+        id: user.id,
+        account_detail: {
+          comment
+        }
+      }
+    },
+      {
+      headers: {
+        Authorization: authToken
+      }
+    }).then((response) => {
+      setCommentFormMessage("コメントの更新に成功しました")
+    }).catch((e) => {
+      console.log(e)
+      router.push('/login')
+    })
+  }
+
 
   const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -158,12 +182,13 @@ export default function Id() {
         </div>
         <div className={styles.panelGroup}>
           <div className={styles.panelHeader}>
-            コメント
+            メモ
           </div>
           <div className={styles.panelBody}>
             <div className={styles.textInputArea}>
-              <textarea className={styles.textareaComment} rows={5} />
-              <button className={styles.submitButton}>
+              {commentFormMessage && <p className={styles.commentUpdateMessage}>{commentFormMessage}</p>}
+              <textarea className={styles.textareaComment} rows={5} value={comment} onChange={(e) => setComment(e.target.value)}/>
+              <button className={styles.submitButton} onClick={() => submitComment()}>
                 保存する
               </button>
             </div>

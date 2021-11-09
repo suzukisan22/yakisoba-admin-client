@@ -182,10 +182,14 @@ header.header {
   align-items: flex-end;
 }
 
-.passwordUpdateMessage {
+.passwordUpdateMessage, .commentUpdateMessage {
   margin-bottom: 24px;
   background-color: #bedcc3;
   color: #255b34;
   padding: 8px 16px;
   border-radius: 4px;
+}
+
+.commentUpdateMessage {
+  width: 100%;
 }
