@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/router";
 import axios from 'axios';
 import styles from '../../styles/UserDetail.module.scss';
 // import queryString from 'query-string';
 import {ArrowBackIos} from '@material-ui/icons';
+import { useForm } from 'react-hook-form';
 
 export default function Id() {
   const router = useRouter();
   const [id, setId] = useState(0);
   const [user, setUser] = useState('');
+  const [passwordFormMessage, setPasswordFormMessage] = useState('');
+
   const isGroomSide = user.account_detail && user.account_detail.is_groom_side;
+  const {handleSubmit, register, formState: { errors }} = useForm();
 
   // この部分を追加
   useEffect(() => {
@@ -38,6 +42,33 @@ export default function Id() {
       f()
     }
   }, [id]);
+
+  const onClickUpdatePassword = (data) => {
+    console.log(data)
+    const authToken = localStorage.getItem('r_to_a_admin_key')
+    axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users/attendances/password_update`, {
+      user: {
+        id: user.id,
+        password: data.password
+      }
+    },
+      {
+      headers: {
+        Authorization: authToken
+      }
+    }).then((response) => {
+      setPasswordFormMessage("更新に成功しました")
+    }).catch((e) => {
+      console.log(e)
+      router.push('/login')
+    })
+  }
+
+  console.log(errors)
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
   return (
     <div>
@@ -97,25 +128,30 @@ export default function Id() {
                   <p className={styles.accountLabel}>Password</p>
                   <span className={styles.accountDescription}>パスワードを紛失した場合、こちらから新しいパスワードに変更してください</span>
                 </div>
-                <div className={styles.passwordChangeForm}>
+                <form className={styles.passwordChangeForm} onSubmit={handleSubmit(onClickUpdatePassword)}>
+                  {passwordFormMessage && <p className={styles.passwordUpdateMessage}>{passwordFormMessage}</p>}
                   <div>
                     <label className={styles.passwordChangeLabel}>
                       <span>新しいパスワード</span>
-                      <input type="password" name="password" className={styles.inputPassword}/>
+                      <div style={{display: 'flex', flexFlow: 'column'}}>
+                        <input type="password" className={styles.inputPassword} {...register("password", {required: "パスワードは必須入力です"})} />
+                        {errors && errors.password && <p style={{fontSize: '12px', color: 'red'}}>{errors.password.message}</p>}
+                      </div>
                     </label>
                   </div>
                   <div>
                     <label className={styles.passwordChangeLabel}>
                       <span>新しいパスワード(確認)</span>
-                      <input type="password" name="confirm_password" className={styles.inputPassword}/>
+                      <div style={{display: 'flex', flexFlow: 'column'}}>
+                        <input type="password" className={styles.inputPassword} {...register("confirmed_password", {required: "パスワード(確認)は必須入力です"})} />
+                        {errors && errors.password && <p style={{fontSize: '12px', color: 'red'}}>{errors.confirmed_password.message}</p>}
+                      </div>
                     </label>
                   </div>
                   <div className={styles.submitButtonGroup}>
-                    <button className={styles.submitButton}>
-                      変更する
-                    </button>
+                    <input type="submit" value="変更する" className={styles.submitButton} />
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>

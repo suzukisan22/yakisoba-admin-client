@@ -89,6 +89,7 @@ header.header {
   font-size: 18px;
   letter-spacing: 4px;
   color: #F4FBF3;
+  border: none;
 }
 
 .panelBody {
@@ -159,7 +160,7 @@ header.header {
 .passwordChangeLabel {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   span {
     font-size: 14px;
   }
@@ -168,7 +169,7 @@ header.header {
 .inputPassword {
   border: 1px solid #B8BEB8;
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   min-width: 280px;
   height: 40px;
   font-size: 18px;
@@ -179,4 +180,12 @@ header.header {
   display: flex;
   flex-flow: column;
   align-items: flex-end;
+}
+
+.passwordUpdateMessage {
+  margin-bottom: 24px;
+  background-color: #bedcc3;
+  color: #255b34;
+  padding: 8px 16px;
+  border-radius: 4px;
 }
