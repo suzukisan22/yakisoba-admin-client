@@ -28,8 +28,6 @@ export default function Id() {
     }
   }, [router]);
 
-  console.log(errors)
-
   // idが取得されてセットされたら処理される
   useEffect(() => {
     if (id != 0) {
