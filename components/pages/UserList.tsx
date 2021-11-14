@@ -1,13 +1,13 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.scss'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Popover} from '@material-ui/core';
 
-export default function UserList() {
+export default function UserList(): JSX.Element {
   const [users, setUsers] = useState([])
   const [isGroomTabSelected, setIsGroomTabSelected] = useState(true)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -29,15 +29,15 @@ export default function UserList() {
     f()
   }, [])
 
-  const handleMoreVertClick = (event) => {
+  const handleMoreVertClick = (event):void => {
     setAnchorEl(event.currentTarget);
   }
 
-  const handleClose = () => {
+  const handleClose = ():void => {
     setAnchorEl(null);
   };
 
-  const onClickAttendance = (user) => {
+  const onClickAttendance = (user):void => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
     axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users/attendances/update`, {
       user: {
@@ -62,7 +62,7 @@ export default function UserList() {
     })
   }
 
-  const onClickFeeAccepted = (user) => {
+  const onClickFeeAccepted = (user):void => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
     axios.post(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users/attendances/update`, {
       user: {
@@ -87,7 +87,7 @@ export default function UserList() {
     })
   }
 
-  const setUserByInvitationSide = ({isGroomSide}) => {
+  const setUserByInvitationSide = ({isGroomSide}):void  => {
     const authToken = localStorage.getItem('r_to_a_admin_key')
 
     axios.get(`${process.env.API_SERVER_ENDPOINT}/v1/admin/users?is_groom_side=${isGroomSide}`, {
@@ -101,8 +101,8 @@ export default function UserList() {
     })
   }
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const open: boolean = Boolean(anchorEl);
+  const id: string | undefined = open ? 'simple-popover' : undefined;
 
   return (
     <div>
