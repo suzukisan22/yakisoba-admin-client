@@ -163,28 +163,31 @@ export default function UserList(): JSX.Element {
                   </Link>
                 </td>
                 <td>
-                  <MoreVertIcon onClick={handleMoreVertClick}/>
-                  <Popover 
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
-                    }}
-                  >
-                    <ul className={styles.popoverList}>
-                      {!!user.attendance && (user.attendance.is_attende_on_that_day ? 
-                      <li onClick={() => onClickAttendance(user)}>受付が未完了に戻す</li> : 
-                      <li onClick={() => onClickAttendance(user)}>受付済みにする</li>)}
-                      {user.transfer_fee_manager.cost != 0 && (
-                        user.transfer_fee_manager.is_guest_accepted ?
-                        <li onClick={() => onClickFeeAccepted(user)}>お車代を未提供に戻す</li> :
-                        <li onClick={() => onClickFeeAccepted(user)}>お車代を提供済みにする</li>
-                      )}
-                    </ul>
-                  </Popover>
+                  {(!!user.attendance || user.transfer_fee_manager.cost != 0) &&
+                    (
+                    <><MoreVertIcon onClick={handleMoreVertClick} />
+                      <Popover 
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                          vertical: 'bottom',
+                          horizontal: 'left',
+                        }}
+                      >
+                      <ul className={styles.popoverList}>
+                        {user.attendance.is_attende_on_that_day ? 
+                        <li onClick={() => onClickAttendance(user)}>受付が未完了に戻す</li> : 
+                        <li onClick={() => onClickAttendance(user)}>受付済みにする</li>}
+                        {
+                          user.transfer_fee_manager.is_guest_accepted ?
+                          <li onClick={() => onClickFeeAccepted(user)}>お車代を未提供に戻す</li> :
+                          <li onClick={() => onClickFeeAccepted(user)}>お車代を提供済みにする</li>
+                        }
+                      </ul>
+                    </Popover></>)
+                  }
                 </td>
               </tr>
             ))}
