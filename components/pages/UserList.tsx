@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../../styles/Home.module.scss'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, SyntheticEvent } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -29,7 +29,7 @@ export default function UserList(): JSX.Element {
     f()
   }, [])
 
-  const handleMoreVertClick = (event):void => {
+  const handleMoreVertClick = (event: SyntheticEvent):void => {
     setAnchorEl(event.currentTarget);
   }
 
@@ -132,7 +132,7 @@ export default function UserList(): JSX.Element {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user.id} className={users.length != index + 1 && styles.borderBottomRequired}>
+              <tr key={user.id} className={users.length != index + 1 ? styles.borderBottomRequired : ''}>
                 <td>
                   <Link href={`/users/${user.id}`} key={index}>
                     <a style={{display: 'block', width: '100%'}}>
