@@ -1,4 +1,4 @@
-import UserList from '../components/pages/UserList'
+import UserList from '../src/components/pages/UserList'
 
 export default function Home() {
   return (

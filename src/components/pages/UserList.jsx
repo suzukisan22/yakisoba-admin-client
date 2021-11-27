@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../../styles/Home.module.scss'
+import styles from '../../../styles/Home.module.scss'
 import React, { useEffect, useState, SyntheticEvent } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router';

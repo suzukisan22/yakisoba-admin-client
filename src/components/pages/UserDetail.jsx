@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from "next/router";
 import axios from 'axios';
-import styles from '../../styles/UserDetail.module.scss';
+import styles from '../../../styles/UserDetail.module.scss';
 // import queryString from 'query-string';
 import {ArrowBackIos} from '@material-ui/icons';
 import { useForm } from 'react-hook-form';

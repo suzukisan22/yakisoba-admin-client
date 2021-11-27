@@ -1,4 +1,4 @@
-import UserDetail from "../../components/pages/UserDetail"
+import UserDetail from "../../src/components/pages/UserDetail"
 
 export default function Id() {
   return (

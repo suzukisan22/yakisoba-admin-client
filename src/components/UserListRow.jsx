@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios'
-import styles from '../styles/Home.module.scss'
+import styles from '../../styles/Home.module.scss'
 import Link from 'next/link';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {Popover} from '@material-ui/core';
