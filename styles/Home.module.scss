@@ -1,18 +1,33 @@
+@media screen and (min-width:768px) {
+  /*　画面サイズが768pxからはここを読み込む　*/
+  .main {
+    width: 640px;
+    margin: 0 auto;
+  }
+
+  header.header {
+    background-color: #BBD2BB;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    span {
+      color: #665723;
+      margin-left: 36px;
+      font-size: 24px;
+    }
+  }
+}
+
 header.header {
   background-color: #BBD2BB;
-  height: 64px;
+  height: 48px;
   display: flex;
   align-items: center;
   span {
     color: #665723;
-    margin-left: 36px;
-    font-size: 24px;
+    margin-left: 16px;
+    font-size: 16px;
   }
-}
-
-.main {
-  width: 640px;
-  margin: 0 auto;
 }
 
 .listFilterTab {
