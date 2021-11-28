@@ -1,18 +1,58 @@
+@media screen and (min-width:768px) {
+  /*　画面サイズが1024pxからはここを読み込む　*/
+  .main {
+    width: 640px;
+    margin: 0 auto;
+  }
+  .arrowBackIcon {
+    width: 48px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .groomSideIcon {
+    width: 128px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333572;
+  }
+
+  header.header {
+    background-color: #BBD2BB;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    span {
+      color: #665723;
+      margin-left: 36px;
+      font-size: 24px;
+    }
+  }
+
+  .passwordChangeLabel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
 header.header {
   background-color: #BBD2BB;
-  height: 64px;
+  height: 48px;
   display: flex;
   align-items: center;
   span {
     color: #665723;
-    margin-left: 36px;
-    font-size: 24px;
+    margin-left: 16px;
+    font-size: 16px;
   }
-}
-
-.main {
-  width: 640px;
-  margin: 0 auto;
 }
 
 .mainHeader {
@@ -21,7 +61,7 @@ header.header {
 }
 
 .arrowBackIcon {
-  width: 48px;
+  width: 36px;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -29,7 +69,7 @@ header.header {
 }
 
 .groomSideIcon {
-  width: 128px;
+  width: 96px;
   height: 64px;
   display: flex;
   align-items: center;
@@ -158,8 +198,6 @@ header.header {
 }
 
 .passwordChangeLabel {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 24px;
   span {
     font-size: 14px;

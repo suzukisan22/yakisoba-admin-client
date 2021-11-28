@@ -1,10 +1,23 @@
+@media screen and (min-width:768px) {
+  /*　画面サイズが768pxからはここを読み込む　*/
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #DAE5DA;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: #1F2D1F;
+  }
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
   background-color: #DAE5DA;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 2px;
   color: #1F2D1F;
 }
