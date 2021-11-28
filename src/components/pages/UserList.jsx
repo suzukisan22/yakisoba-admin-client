@@ -61,8 +61,8 @@ export default function UserList() {
           <thead>
             <tr>
               <th>名前</th>
-              <th>出席予定か</th>
-              <th>受付済み</th>
+              <th>当日出席予定か</th>
+              <th>当日受付状態</th>
               <th>お車代の提供有無</th>
               <th></th>
             </tr>
